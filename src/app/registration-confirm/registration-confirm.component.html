@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <span>To complete registration set new password</span>
+</mat-toolbar>
+
+<form>
+  <mat-card>
+    <mat-grid-list cols="1" rowHeight="60px">
+      <mat-grid-tile>
+        <input type="password" [(ngModel)]="password" name="password" matInput placeholder="Password">
+      </mat-grid-tile>
+
+   <mat-grid-tile>
+     <input matInput type="password" placeholder="Repeat password" name="repeatPassword" [(ngModel)]="repeatPassword">
+   </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button color="accent" (click)="onSubmit()">Submit</button>
+    </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+
+
+</form>

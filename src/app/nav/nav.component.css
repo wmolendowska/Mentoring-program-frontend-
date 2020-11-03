@@ -1,0 +1,26 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+#main-menu-content {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sidenav {
+    display: none;
+  }
+  #main-menu-content {
+    display: block;
+  }
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}

@@ -1,0 +1,6 @@
+<mat-tab-group (selectedIndexChange)="onTabChange($event)">
+  <mat-tab label="Active users"><app-active-users></app-active-users></mat-tab>
+  <mat-tab label="Deactivated users"><app-deactivated-users></app-deactivated-users></mat-tab>
+  <mat-tab label="Pending confirmation users"><app-pending-confirmation-users></app-pending-confirmation-users></mat-tab>
+  <mat-tab label="Unassigned students"><app-unassigned-students></app-unassigned-students></mat-tab>
+</mat-tab-group>

@@ -1,0 +1,57 @@
+<div>
+  <mat-toolbar>
+  <mat-form-field >
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" (ngModelChange)="loadData()">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>event</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <span class="spacer"></span>
+  <button mat-raised-button color="accent" *ngIf="getRole()=='ROLE_MENTOR'" (click)="addMeetings()"><mat-icon>add</mat-icon>Create</button>
+  </mat-toolbar>
+
+  <div>{{message}}</div>
+
+  <div *ngIf="date">
+    <mat-card class="meeting-details" *ngFor="let meeting of meetings"
+              [ngClass]="{'grey': meeting.student==null && getRole() !== 'ROLE_STUDENT'}">
+      <mat-grid-list cols="4" rowHeight="1.5rem">
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+          <div class="day">
+            {{meeting.time*1000 | date:'dd'}}
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="3">
+          <a>
+            <mat-icon>calendar_today</mat-icon>
+            {{meeting.time*1000 | date:'EEEE'}}
+          </a>
+          <a>
+            <mat-icon>access_time</mat-icon>
+            {{meeting.time*1000 | date: 'hh:mm aa'}}</a>
+          <div *ngIf="meeting.student !== null && getRole()!=='ROLE_STUDENT'">
+            <mat-icon>school</mat-icon>
+            {{meeting.student.name}} {{meeting.student.lastName}}</div>
+          <div *ngIf="getRole()==='ROLE_ADMIN'">
+          <a>
+            <mat-icon *ngIf="meeting.mentor !== null">person</mat-icon>
+            {{meeting.mentor.name}} {{meeting.mentor.lastName}}</a></div>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile [colspan]="1" [rowspan]="3">
+            <button mat-raised-button color="warn" *ngIf="!isBookingModule" (click)="cancelMeeting(meeting)">Cancel</button>
+          <button mat-raised-button color="warn" *ngIf="isBookingModule" (click)="bookMeeting(meeting)">Book</button>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div class="month">
+            {{meeting.time*1000| date:'MMMM'}}
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </div>
+</div>

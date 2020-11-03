@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>Enter your availability hours</span>
+  <span class="spacer"></span>
+  <button class="close-button" mat-stroked-button (click)="close()"><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+
+<form>
+  <mat-grid-list cols="5" rowHeight="60px">
+    <mat-grid-tile [colspan]="2">
+      <mat-form-field>
+        <input matInput type="time" name="startTime" [(ngModel)]="startTime">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">
+      <a>-</a>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2">
+      <mat-form-field>
+        <input matInput type="time" name="endTime" [(ngModel)]="endTime">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2"></mat-grid-tile>
+    <mat-grid-tile><button mat-raised-button color="accent" (click)="onSubmit()">Create</button></mat-grid-tile>
+  </mat-grid-list>
+
+</form>

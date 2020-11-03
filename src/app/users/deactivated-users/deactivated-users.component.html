@@ -1,0 +1,49 @@
+<div class="search-div">
+  <!--  <button mat-raised-button (click)="createUser()">-->
+  <!--    <mat-icon>add</mat-icon>Create-->
+  <!--  </button>-->
+  <mat-form-field class="search-from-field" floatLabel="never">
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="deactivatedUsersList" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.lastName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="deactivationTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Deactivation time</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.deactivationTime*1000 | date:'dd/MM/yyyy hh:mm a'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-raised-button color="warn" (click)="activateUser(row)">Activate</button>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef aria-colspan="6">
+        {{message}}
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': deactivatedUsersList!=null}"></mat-footer-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>
+
+

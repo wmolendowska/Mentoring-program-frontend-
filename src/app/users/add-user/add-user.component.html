@@ -1,0 +1,65 @@
+<mat-toolbar>
+  <span>{{dataService.form.controls['id'].value?"Modify user":"Add new user"}}</span>
+  <span class="spacer"></span>
+  <button class="close-button" mat-stroked-button (click)="closeForm()"><mat-icon>close</mat-icon></button>
+</mat-toolbar>
+
+<form [formGroup]="dataService.form" class="add-user-form">
+
+  <mat-grid-list cols="1" rowHeight="60px">
+
+    <mat-grid-tile>
+
+      <input type="hidden" formControlName="id">
+      <div>
+        <mat-radio-group formControlName="role">
+          <mat-radio-button value="ADMIN">Admin</mat-radio-button>
+          <mat-radio-button value="MENTOR">Mentor</mat-radio-button>
+          <mat-radio-button value="STUDENT">Student</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+
+      <mat-form-field appearance="legacy">
+        <input formControlName="name" matInput placeholder="Name*">
+        <mat-error *ngIf="dataService.form.controls['name'].errors?.required">This field is required.</mat-error>
+        <mat-error *ngIf="dataService.form.controls['name'].errors?.minLength">Minimum 3 characters needed.</mat-error>
+      </mat-form-field>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+
+      <mat-form-field appearance="legacy">
+        <input formControlName="lastName" matInput placeholder="Last name*">
+        <mat-error *ngIf="dataService.form.controls['lastName'].errors?.required">This field is required.</mat-error>
+        <mat-error *ngIf="dataService.form.controls['lastName'].errors?.minLength">Minimum 3 characters needed.
+        </mat-error>
+      </mat-form-field>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+
+      <mat-form-field appearance="legacy">
+        <input formControlName="email" matInput placeholder="E-mail*">
+        <mat-error *ngIf="dataService.form.controls['email'].errors?.required">This field is required.</mat-error>
+        <mat-error *ngIf="dataService.form.controls['email'].errors?.email">Invalid e-mail address.</mat-error>
+      </mat-form-field>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="dataService.form.invalid"
+                (click)="onSubmit()">Submit
+        </button>
+        <button mat-raised-button color="warn" (click)="clearForm()">Clear</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</form>

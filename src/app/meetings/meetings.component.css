@@ -1,0 +1,23 @@
+.day {
+  margin-top: 15px;
+  font-size: xxx-large;
+  font-weight: bold;
+
+}
+
+.month {
+  font-size: large;
+}
+
+
+mat-grid-tile a{
+  padding-left: 10px;
+}
+
+.meeting-details {
+  margin-top: 5px;
+}
+
+.grey {
+  background-color: grey;
+}

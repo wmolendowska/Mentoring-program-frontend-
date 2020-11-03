@@ -1,0 +1,21 @@
+<mat-card *ngIf="user">
+  <mat-grid-list cols="1" rowHeight="60px">
+
+    <mat-grid-tile>
+      <h1>{{user.name}} {{user.lastName}}</h1>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <h3>E-mail: {{user.email}}</h3>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <h3>{{user.role.toLowerCase()}}</h3>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button color="accent" (click)="changePassword()">Change password</button>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</mat-card>
